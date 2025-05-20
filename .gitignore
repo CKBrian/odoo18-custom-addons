@@ -1,0 +1,8 @@
+# Ignore Python junk
+*.py[co]
+__pycache__/
+
+# Ignore IDE/editor junk
+.vscode/
+.idea/
+
