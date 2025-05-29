@@ -2,20 +2,30 @@
 <templates xml:space="preserve">
 
   <t t-name="awesome_owl.playground">
-    <!-- Parent container with Bootstrap flex classes -->
+
+    <!-- Parent container with Playground exercise components -->
+
     <div class="card d-flex flex-row align-items-center gap-3 p-3">
-        
+
         <!-- First item -->
         <div>Hello world</div>
-        
+
         <!-- Counter and button in horizontal layout -->
         <Counter onChange.bind="incrementSum"/>
         <Counter onChange.bind="incrementSum"/>
     </div>
-      <t t-foreach="cards" t-as="card" t-key="card.title">
+
+    <!-- Card items and sum  -->
+    <t t-foreach="cards" t-as="card" t-key="card.title">
         <Card title="card.title" content="card.content"/>
-      </t>
-      <div class="card d-flex flex-row align-items-center gap-3 p-3">Sum: <t t-esc="state.sum"/></div>
+    </t>
+    <div class="card d-flex flex-row align-items-center gap-3 p-3">Sum: <t t-esc="state.sum"/></div>
+
+    <!-- Todo List with Todo Items as child  -->
+    <div class="card d-flex flex-row align-items-center gap-3 p-3 mt-3">
+        <TodoList/>
+    </div>
+
   </t>
 
 </templates>
