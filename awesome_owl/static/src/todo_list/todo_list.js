@@ -8,6 +8,9 @@ export class TodoList extends Component {
     static components = { TodoItem };
 
     setup() {
-        this.todos = useState([{ id: 3, description: "buy milk", isCompleted: false }]);
+        this.todos = useState([
+            { id: 1, description: "learn to use Odoo's qweb syntax", isCompleted: false },
+            { id: 2, description: "learn how to use the Odoo's build-in components", isCompleted: false },
+            { id: 3, description: "learn how to build the Odoo Dashboard component", isCompleted: false }]);
     }
 }
