@@ -1,0 +1,7 @@
+<templates xml:space="preserve">
+    <t t-name="awesome_owl.todo_item">
+        <div class="card p-2 m-2">
+            <p><t t-out="props.todo.id"/>. <t t-out="props.todo.description"/></p>
+        </div>
+    </t>
+</templates>
