@@ -1,7 +1,21 @@
 <templates xml:space="preserve">
     <t t-name="awesome_owl.todo_list">
-        <t t-foreach="this.todos" t-as="todo" t-key="todo.id" >
-            <TodoItem todo="todo"/>
-        </t>
+        <div class="card d-flex flex-column align-items-center gap-3 p-3">
+            <!-- Input for adding new todos -->
+            <input 
+                type="text" 
+                placeholder="Enter a new todo" 
+                class="form-control" 
+				t-ref="todo_input"
+                t-on-keyup="addTodo"
+            />
+
+            <!-- Todo list -->
+            <div class="w-100">
+                <t t-foreach="this.todos" t-as="todo" t-key="todo.id">
+                    <TodoItem todo="todo" toggleState.bind="toggleState" removeTodo.bind="removeTodo"/>
+                </t>
+            </div>
+        </div>
     </t>
 </templates>
