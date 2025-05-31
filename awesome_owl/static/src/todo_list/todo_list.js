@@ -1,5 +1,5 @@
 /** @odoo-module **/
-import { Component, useState } from "@odoo/owl";
+import { Component, useState, useRef, onMounted } from "@odoo/owl";
 import { TodoItem } from "./todo_item.js";
 
 export class TodoList extends Component {
@@ -8,9 +8,49 @@ export class TodoList extends Component {
     static components = { TodoItem };
 
     setup() {
-        this.todos = useState([
-            { id: 1, description: "learn to use Odoo's qweb syntax", isCompleted: false },
-            { id: 2, description: "learn how to use the Odoo's build-in components", isCompleted: false },
-            { id: 3, description: "learn how to build the Odoo Dashboard component", isCompleted: false }]);
+        this.todos = useState([]);
+        this.nextId = 1; // Counter for unique IDs
+        this.inputRef = useRef("todo_input")
+        onMounted(() => {
+            this.inputRef.el.focus();
+        });
     }
+
+    addTodo(ev) {
+        // Check if Enter key was pressed
+        if (ev.keyCode === 13) {
+            const input = ev.target;
+            const description = input.value.trim();
+
+            // Bonus: Don't create todo if input is empty
+            if (description) {
+                // Create new todo object
+                const newTodo = {
+                    id: this.nextId++,
+                    description: description,
+                    isCompleted: false
+                };
+
+                // Add to todos array
+                this.todos.push(newTodo);
+
+                // Clear input
+                input.value = '';
+            }
+        }
+    }
+
+    toggleState(id) {
+        this.todos.forEach(todo => {
+            if (todo.id === id) {
+                todo.isCompleted = !todo.isCompleted;
+            }
+        });
+    }
+
+    removeTodo(id) {
+        this.todos.splice(0, this.todos.length, ...this.todos.filter(todo => todo.id !== id));
+        console.log(`Todo with id ${id} removed\n todo list:`, this.todos);
+    }
+
 }
