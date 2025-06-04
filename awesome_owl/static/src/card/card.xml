@@ -1,13 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-	<t t-name="awesome_owl.card">
-
-		<div class="card d-inline-block m-2" style="width: 18rem;">
-			<div class="card-body">
-				<h5 class="card-title"><t t-out="props.title"/></h5>
-				<p class="card-text">
-					<t t-out="props.content"/>
-				</p>
-			</div>
-		</div>
-	</t>
+  <t t-name="awesome_owl.card">
+    <div class="card d-inline-block m-2" style="width: 18rem;">
+      <div class="card-body">
+        <span class="d-flex flex-row justify-content-between align-items-center">
+          <h5 class="card-title">
+            <t t-out="props.title" />
+          </h5>
+          <button class="btn btn-primary" style="border: 2px solid #756aa1" type="button" t-on-click="() => cardState.isOpen = !cardState.isOpen">toggle</button>
+        </span>
+        <t t-if="cardState.isOpen">
+          <div class="card-text">
+            <!-- Use the unnamed default slot -->
+            <t t-slot="default" />
+          </div>
+        </t>
+      </div>
+    </div>
+  </t>
 </templates>
+<!-- Finally, let’s add a feature to the Card component, to make it more interesting: we want a button to toggle its content (show it or hide it)
+
+    Add a state to the Card component to track if it is open (the default) or not
+
+    Add a t-if in the template to conditionally render the content
+
+    Add a button in the header, and modify the code to flip the state when the button is clicked
+ -->
