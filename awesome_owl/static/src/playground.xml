@@ -17,7 +17,7 @@
     <t t-foreach="cards" t-as="card" t-key="card.title">
       <Card title="card.title">
         <t t-slot="default">
-          <!-- Slot content, e.g. another component -->
+          <t t-out="card.content" />
           <Counter onChange.bind="incrementSum" />
         </t>
       </Card>
