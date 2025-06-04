@@ -19,11 +19,3 @@
     </div>
   </t>
 </templates>
-<!-- Finally, let’s add a feature to the Card component, to make it more interesting: we want a button to toggle its content (show it or hide it)
-
-    Add a state to the Card component to track if it is open (the default) or not
-
-    Add a t-if in the template to conditionally render the content
-
-    Add a button in the header, and modify the code to flip the state when the button is clicked
- -->
