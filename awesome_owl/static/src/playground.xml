@@ -4,26 +4,32 @@
   <t t-name="awesome_owl.playground">
 
     <!-- Parent container with Playground exercise components -->
-
     <div class="card d-flex flex-row align-items-center gap-3 p-3">
+      <!-- First item -->
+      <div>Hello world</div>
 
-        <!-- First item -->
-        <div>Hello world</div>
-
-        <!-- Counter and button in horizontal layout -->
-        <Counter onChange.bind="incrementSum"/>
-        <Counter onChange.bind="incrementSum"/>
+      <!-- Counter and button in horizontal layout -->
+      <Counter onChange.bind="incrementSum" />
+      <Counter onChange.bind="incrementSum" />
     </div>
 
-    <!-- Card items and sum  -->
+    <!-- Card items and sum -->
     <t t-foreach="cards" t-as="card" t-key="card.title">
-        <Card title="card.title" content="card.content"/>
+      <Card title="card.title">
+        <t t-slot="default">
+          <!-- Slot content, e.g. another component -->
+          <Counter onChange.bind="incrementSum" />
+        </t>
+      </Card>
     </t>
-    <div class="card d-flex flex-row align-items-center gap-3 p-3">Sum: <t t-esc="state.sum"/></div>
 
-    <!-- Todo List with Todo Items as child  -->
+    <div class="card d-flex flex-row align-items-center gap-3 p-3">
+      Sum: <t t-esc="state.sum" />
+    </div>
+
+    <!-- Todo List with Todo Items as child -->
     <div class="card d-flex flex-row align-items-center gap-3 p-3 mt-3">
-        <TodoList/>
+      <TodoList />
     </div>
 
   </t>
